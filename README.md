@@ -1,6 +1,6 @@
-# B 站视频学习笔记自动生成器
+# 视频学习笔记自动生成器
 
-> 🎬 一键将 B 站视频转化为结构化学习笔记，自动上传到飞书文档
+> 🎬 一键将 B 站/YouTube 视频转化为结构化学习笔记，自动上传到飞书文档
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,8 +10,10 @@
 
 ## ✨ 功能特性
 
-- **自动下载音频**：使用 yt-dlp 下载 B 站视频音频
-- **语音识别转录**：使用 Whisper 进行高精度语音转文字
+- **支持多平台**：B 站 + YouTube 视频
+- **智能字幕获取**：
+  - YouTube：优先使用官方字幕（更快）
+  - B 站：使用 Whisper 语音转录（无官方字幕）
 - **智能笔记生成**：使用 GLM-4-Flash 生成结构化学习笔记
 - **自动上传飞书**：将笔记自动上传到飞书文档指定节点
 - **支持无字幕视频**：即使没有官方字幕也能处理
@@ -65,8 +67,11 @@ cp config/glm-config.example.json config/glm-config.json
 #### 方式 1：命令行使用
 
 ```bash
-# 处理单个视频
+# 处理 B 站视频
 python src/main.py --url "https://www.bilibili.com/video/BVxxxxx"
+
+# 处理 YouTube 视频
+python src/youtube_processor.py "https://www.youtube.com/watch?v=xxxxx"
 
 # 处理视频并指定飞书节点
 python src/main.py --url "https://www.bilibili.com/video/BVxxxxx" \
